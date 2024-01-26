@@ -34912,7 +34912,7 @@ try {
 
     const yamlContent = fs.readFileSync(configPath, { encoding: 'utf-8' });
 
-    const data = yaml.load(fileContents);
+    const data = yaml.load(yamlContent);
 
     const teamLabelsByNames = new Map();
 
