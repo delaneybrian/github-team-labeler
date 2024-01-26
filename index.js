@@ -10,18 +10,18 @@ try {
 
     const configPath = core.getInput('configPath', { required: true });
 
-    const fileContents = fs.readFileSync(configPath, { encoding: 'utf-8' });
+    const yamlContent = fs.readFileSync(configPath, { encoding: 'utf-8' });
 
-    const configObject = yaml.load(fileContents);
+    const data = yaml.load(fileContents);
 
     const teamLabelsByNames = new Map();
 
-    for (const teamName in configObject) {
-        if (yamlData.hasOwnProperty(teamName)) {
-            const labels = yamlData[teamName];
-            teamLabelsByNames.set(teamName, labels);
+    for (const teamName in data) {
+        if (data.hasOwnProperty(teamName)) {
+          const tags = data[teamName];
+          teamLabelsByNames[teamName] = tags;
         }
-    }
+      }
 
     for (let [teamName, teamLabels] of teamLabelsByNames){
         console.log("team: " + team);
@@ -33,7 +33,6 @@ try {
     const author = github.context.actor;
 
     const octokit = github.getOctokit(token);
-
 
 
     // const allTeams = await octokit.rest.teams.list({ org: org });
