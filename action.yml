@@ -1,0 +1,19 @@
+name: 'Github Team Labeler Action'
+description: 'Add a label to a PR based on the team or teams that the author belongs to'
+author: 'Brian Delaney'
+repo-token:
+    required: true
+    description: 'GITHUB_TOKEN secret'
+inputs:
+  organization: 
+    description: 'The organization to run the action against'
+    required: true
+  token: 
+    description: 'Token used to access GitHub data'
+    required: true
+  configPath: 
+    description: 'The path for the config yaml file'
+    required: true
+runs:
+  using: 'node20'
+  main: 'index.js'
