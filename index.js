@@ -34,12 +34,15 @@ try {
 
     const octokit = github.getOctokit(token);
 
+    octokit.rest.teams.list({ org: org })
+        .then(allTeams => {
+            allTeams.data.forEach(x => console.log(x.name));
 
-    // const allTeams = await octokit.rest.teams.list({ org: org });
-
-    // const allTeamSlugs = allTeams.data.map(x => x.slug);
-
-    // allTeamSlugs.filter(element => teamLabelsByName.keys.includes(element));
+            const allTeamSlugs = allTeams.data.map(x => x.slug);
+        
+            allTeamSlugs.filter(element => teamLabelsByName.keys.includes(element));
+        
+        });
 
     // const userTeams = allTeamSlugs.filter(async (teamSlug) => {
     //     const { data: teamMembers } = await octokit.teams.listMembersInOrg({
